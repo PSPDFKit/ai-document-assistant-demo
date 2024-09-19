@@ -1,0 +1,27 @@
+<script src="https://cdn.cloud.staging.pspdfkit.com/pspdfkit-web@2024.5.2-d54c4ac/pspdfkit.js"></script>
+<!-- 2. Element where PSPDFKit will be mounted. -->
+<div id="pspdfkit" style="width: 100vw; height: 100vh;"></div>
+<!-- 3. Initialize PSPDFKit. -->
+<script>
+  console.log("Show document <%= documentId %>");
+  console.log("JWT <%= jwt %>");
+  PSPDFKit.load({
+    serverUrl: "http://localhost:5000/",
+    container: "#pspdfkit",
+    documentId: "<%= documentId %>",
+    authPayload: { jwt: "<%= jwt %>" },
+    instant: false,
+    toolbarItems: [...PSPDFKit.defaultToolbarItems, { type: "ai-document-assistant" }],
+    aiDocumentAssistant: {
+      sessionId: "my-random-session-id",
+      jwt: "<%= aiJwt %>",
+      backendUrl: 'http://localhost:4000/',
+    },
+  })
+    .then(function(instance) {
+      console.log("PSPDFKit loaded", instance);
+    })
+    .catch(function(error) {
+      console.error(error.message);
+    });
+</script>
