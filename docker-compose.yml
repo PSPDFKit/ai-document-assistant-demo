@@ -3,7 +3,6 @@ version: "3.8"
 services:
   ai-document-assistant:
     image: pspdfkit/ai-document-assistant:nightly
-    platform: linux/amd64
     environment:
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       DE_URL: http://pspdfkit:5000
