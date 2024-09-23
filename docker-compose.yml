@@ -9,7 +9,7 @@ services:
       DE_API_AUTH_TOKEN: secret
       PGUSER: db-user
       PGPASSWORD: password
-      PGDATABASE: document_assistant
+      PGDATABASE: ai_document_assistant
       PGHOST: db
       PGPORT: 5432
       API_AUTH_TOKEN: secret
@@ -63,7 +63,7 @@ services:
     environment:
       POSTGRES_USER: db-user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: ai-document-assistant
+      POSTGRES_DB: ai_document_assistant
       POSTGRES_INITDB_ARGS: --data-checksums
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
