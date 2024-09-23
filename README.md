@@ -1,6 +1,6 @@
 # 🤖 AI Document Assistant for PSPDFKit Demo
 
-This project demonstrates the functionality of the PSPDFKit AI Document Assistant. The AI-powered assistant enhances PDF document workflows by offering intelligent document analysis and interaction, leveraging PSPDFKit for seamless PDF handling and processing.
+This project demonstrates the functionality of PSPDFKit AI Document Assistant. The AI-powered assistant enhances PDF document workflows by offering intelligent document analysis and interaction, leveraging PSPDFKit for seamless PDF handling and processing.
 
 ## Setup
 
@@ -25,7 +25,7 @@ When the AI Document Assistant is ready to use, you will see `info: AI Document 
 ./start
 ```
 
-Head over to http://localhost:3000/, where you'll see a PDF loaded in PSPDFKit for Web, our document viewer. Click on the Document Assistant toolbar icon to start interacting with your document in an entirely new way, using natural language commands.
+Head over to URL listed on the command line, where you'll see a PDF loaded in PSPDFKit for Web, our document viewer. Click on the AI Document Assistant toolbar icon (star) to start interacting with your document in an entirely new way, using natural language commands.
 
 ![Screenshot-of-PSPDFKit-AI-Document-Assistant](assets/AI-Document-Assistant-overview.png)
 
