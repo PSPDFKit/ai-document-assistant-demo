@@ -9,12 +9,10 @@ services:
       DE_API_AUTH_TOKEN: secret
       PGUSER: db-user
       PGPASSWORD: password
-      PGDATABASE: document_assistant
+      PGDATABASE: ai_document_assistant
       PGHOST: db
       PGPORT: 5432
-      PGSSL: false
       API_AUTH_TOKEN: secret
-      SECRET_KEY_BASE: secret-key-base
       JWT_PUBLIC_KEY: |
         -----BEGIN PUBLIC KEY-----
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2gzhmJ9TDanEzWdP1WG+
@@ -65,7 +63,7 @@ services:
     environment:
       POSTGRES_USER: db-user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: ai-document-assistant
+      POSTGRES_DB: ai_document_assistant
       POSTGRES_INITDB_ARGS: --data-checksums
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
