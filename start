@@ -9,7 +9,7 @@ document_id=$(curl -k -X POST -H "Authorization: Token token=secret" -H "Content
 cd frontend/
 npm install
 echo ""
-echo "     Starting AI Document Assistant webapp..."
+echo "     Starting AI Assistant webapp..."
 echo ""
 echo "Visit http://localhost:3000/documents/$document_id in your browser"
 echo ""
