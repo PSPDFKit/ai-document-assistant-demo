@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+# Upload a sample document to Document Engine.
+document_id=$(curl -k -X POST -H "Authorization: Token token=secret" -H "Content-Type: application/pdf" -T frontend/public/samples/example.pdf http://localhost:5000/api/documents | grep -o '"document_id":"[^"]*"' | cut -d':' -f2 | sed 's/[",]//g')
+
+# Install Node.js dependencies and launch the web server.
+cd frontend/
+npm install
+echo ""
+echo "     Starting AI Document Assistant webapp..."
+echo ""
+echo "Visit http://localhost:3000/documents/$document_id in your browser"
+echo ""
+npm start

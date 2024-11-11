@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  ai-document-assistant:
+    image: pspdfkit/ai-document-assistant:1.0.0
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      DE_URL: http://pspdfkit:5000
+      DE_API_AUTH_TOKEN: secret
+      PGUSER: db-user
+      PGPASSWORD: password
+      PGDATABASE: ai_document_assistant
+      PGHOST: db
+      PGPORT: 5432
+      API_AUTH_TOKEN: secret
+      JWT_PUBLIC_KEY: |
+        -----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2gzhmJ9TDanEzWdP1WG+
+        0Ecwbe7f3bv6e5UUpvcT5q68IQJKP47AQdBAnSlFVi4X9SaurbWoXdS6jpmPpk24
+        QvitzLNFphHdwjFBelTAOa6taZrSusoFvrtK9x5xsW4zzt/bkpUraNx82Z8MwLwr
+        t6HlY7dgO9+xBAabj4t1d2t+0HS8O/ed3CB6T2lj6S8AbLDSEFc9ScO6Uc1XJlSo
+        rgyJJSPCpNhSq3AubEZ1wMS1iEtgAzTPRDsQv50qWIbn634HLWxTP/UH6YNJBwzt
+        3O6q29kTtjXlMGXCvin37PyX4Jy1IiPFwJm45aWJGKSfVGMDojTJbuUtM+8P9Rrn
+        AwIDAQAB
+        -----END PUBLIC KEY-----
+      JWT_ALGORITHM: RS256
+      DASHBOARD_USERNAME: dashboard
+      DASHBOARD_PASSWORD: secret
+    ports:
+      - 4000:4000
+    depends_on:
+      pspdfkit:
+        condition: service_started
+      db:
+        condition: service_healthy
+
+  pspdfkit:
+    image: pspdfkit/document-engine:1.5.1
+    environment:
+      PGUSER: db-user
+      PGPASSWORD: password
+      PGDATABASE: pspdfkit
+      PGHOST: db
+      PGPORT: 5432
+      API_AUTH_TOKEN: secret
+      SECRET_KEY_BASE: secret-key-base
+      JWT_PUBLIC_KEY: |
+        -----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2gzhmJ9TDanEzWdP1WG+
+        0Ecwbe7f3bv6e5UUpvcT5q68IQJKP47AQdBAnSlFVi4X9SaurbWoXdS6jpmPpk24
+        QvitzLNFphHdwjFBelTAOa6taZrSusoFvrtK9x5xsW4zzt/bkpUraNx82Z8MwLwr
+        t6HlY7dgO9+xBAabj4t1d2t+0HS8O/ed3CB6T2lj6S8AbLDSEFc9ScO6Uc1XJlSo
+        rgyJJSPCpNhSq3AubEZ1wMS1iEtgAzTPRDsQv50qWIbn634HLWxTP/UH6YNJBwzt
+        3O6q29kTtjXlMGXCvin37PyX4Jy1IiPFwJm45aWJGKSfVGMDojTJbuUtM+8P9Rrn
+        AwIDAQAB
+        -----END PUBLIC KEY-----
+      JWT_ALGORITHM: RS256
+      DASHBOARD_USERNAME: dashboard
+      DASHBOARD_PASSWORD: secret
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+  db:
+    image: pgvector/pgvector:pg16
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U db-user -d ai_document_assistant" ]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    environment:
+      POSTGRES_USER: db-user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ai_document_assistant
+      POSTGRES_INITDB_ARGS: --data-checksums
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
