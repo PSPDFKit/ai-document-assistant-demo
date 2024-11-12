@@ -1,11 +1,11 @@
 version: "3.8"
 
 services:
-  ai-document-assistant:
+  ai-assistant:
     image: pspdfkit/ai-document-assistant:1.0.0
     environment:
       OPENAI_API_KEY: ${OPENAI_API_KEY}
-      DE_URL: http://pspdfkit:5000
+      DE_URL: http://document-engine:5000
       DE_API_AUTH_TOKEN: secret
       PGUSER: db-user
       PGPASSWORD: password
@@ -29,12 +29,12 @@ services:
     ports:
       - 4000:4000
     depends_on:
-      pspdfkit:
+      document-engine:
         condition: service_started
       db:
         condition: service_healthy
 
-  pspdfkit:
+  document-engine:
     image: pspdfkit/document-engine:1.5.1
     environment:
       PGUSER: db-user
