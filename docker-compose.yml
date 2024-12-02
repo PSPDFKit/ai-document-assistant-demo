@@ -26,7 +26,7 @@ services:
       JWT_ALGORITHM: RS256
       DASHBOARD_USERNAME: dashboard
       DASHBOARD_PASSWORD: secret
-      SECRET_KEY_BASE: secret
+      SECRET_KEY_BASE: secret-key-base
     ports:
       - 4000:4000
     depends_on:
