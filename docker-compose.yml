@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   ai-assistant:
-    image: pspdfkit/ai-document-assistant:1.0.0
+    image: pspdfkit/ai-assistant:1.1.0
     environment:
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       DE_URL: http://document-engine:5000
@@ -26,6 +26,7 @@ services:
       JWT_ALGORITHM: RS256
       DASHBOARD_USERNAME: dashboard
       DASHBOARD_PASSWORD: secret
+      SECRET_KEY_BASE: secret-key-base
     ports:
       - 4000:4000
     depends_on:
