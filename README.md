@@ -27,7 +27,7 @@ When the AI Assistant is ready to use, you will see `info: AI Assistant started 
 
 Head over to URL listed on the command line, where you'll see a PDF loaded in PSPDFKit for Web, our document viewer. Click on the AI Assistant toolbar icon (star) to start interacting with your document in an entirely new way, using natural language commands.
 
-![Screenshot-of-PSPDFKit-AI-Document-Assistant](assets/AI-Assistant-overview.png)
+![Screenshot-of-PSPDFKit-AI-Assistant](assets/AI-Assistant-overview.png)
 
 ## Contact Us
 
