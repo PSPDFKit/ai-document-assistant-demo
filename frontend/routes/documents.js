@@ -7,7 +7,7 @@ var jwtKey = fs.readFileSync(path.resolve(__dirname, '../config/pspdfkit/jwt.pem
 
 router.get('/:documentId', function (req, res, next) {
   var jwt = prepareJwt(req.params.documentId)
-  var aiJwt = prepareAIDocumentAssistantJwt(req.params.documentId)
+  var aiJwt = prepareAIAssistantJwt(req.params.documentId)
   res.render('documents/show', { documentId: req.params.documentId, jwt: jwt, aiJwt: aiJwt })
 })
 
@@ -24,7 +24,7 @@ var prepareJwt = function (documentId) {
   })
 }
 
-const prepareAIDocumentAssistantJwt = function (documentId) {
+const prepareAIAssistantJwt = function (documentId) {
   var claims = {
     document_ids: [documentId],
   }
