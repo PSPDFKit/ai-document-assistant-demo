@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.cloud.pspdfkit.com/pspdfkit-web@2024.6.0/pspdfkit.js"></script>
+    <script src="https://cdn.cloud.pspdfkit.com/pspdfkit-web@2024.8.1/pspdfkit.js"></script>
     <title>AI Assistant Example App</title>
     <link rel='stylesheet' href='/style.css' />
 </head>
@@ -18,8 +18,8 @@
             documentId: "<%= documentId %>",
             authPayload: { jwt: "<%= jwt %>" },
             instant: false,
-            toolbarItems: [...PSPDFKit.defaultToolbarItems, { type: "ai-document-assistant" }],
-            aiDocumentAssistant: {
+            toolbarItems: [...PSPDFKit.defaultToolbarItems, { type: "ai-assistant" }],
+            aiAssistant: {
                 sessionId: "my-random-session-id",
                 jwt: "<%= aiJwt %>",
                 backendUrl: 'http://localhost:4000/',
